@@ -15,8 +15,6 @@ resource "azurerm_log_analytics_workspace" "laws" {
   retention_in_days   = 30
 }
 
-
-
 resource "azapi_resource" "container_app_environment" {
   name = "test"  
   location = local.location
@@ -45,7 +43,7 @@ resource "azapi_resource" "container_app" {
       managedEnvironmentId = azapi_resource.container_app_environment.id
       configuration = {
         ingress = {
-          targetPort = 
+          targetPort = 80
           external = true
         }
       }
