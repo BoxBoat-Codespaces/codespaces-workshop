@@ -16,7 +16,7 @@ resource "azurerm_log_analytics_workspace" "laws" {
 }
 
 resource "azapi_resource" "container_app_environment" {
-  name = "test"  
+  name = "Workshop"  
   location = local.location
   parent_id = azurerm_resource_group.rg.id
   type = "Microsoft.App/managedEnvironments@2022-01-01-preview"
@@ -34,7 +34,7 @@ resource "azapi_resource" "container_app_environment" {
 }
 
 resource "azapi_resource" "container_app" {
-  name = "loco-logo"  
+  name = ""  
   location = local.location
   parent_id = azurerm_resource_group.rg.id
   type = "Microsoft.App/containerApps@2022-01-01-preview"
@@ -50,8 +50,8 @@ resource "azapi_resource" "container_app" {
       template = {
         containers = [
           {
-            image = 
-            name = 
+            image = ""
+            name = ""
           }
         ]
       }
