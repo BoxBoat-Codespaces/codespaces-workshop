@@ -25,14 +25,25 @@
 	
 	// Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
 	"portsAttributes": {
-		"5000": {
-			"label": "Hello Remote World",
+		"5160": {
+			"label": "Swagger UI",
+			"protocol": "http",
 			"onAutoForward": "notify"
 		},
-    "80": {
-      "label": "For our Docker image",
-      "onAutoForward": "notify"
-    }
+		"7258": {
+			"label": "Application",
+			"protocol": "https",
+			"onAutoForward": "notify"
+		},
+		"8080": {
+			"label": "Docker image testing",
+			"protocol": "http",
+			"onAutoForward": "notify"
+		},
+		"80": {
+			"label": "For our Docker image",
+			"onAutoForward": "notify"
+		}
 	},
 
 	"features": {
