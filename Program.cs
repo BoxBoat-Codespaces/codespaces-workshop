@@ -12,7 +12,14 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI();
+// Expose the Swagger UI at the app's root to provide a landing page when opening from GitHub Codespaces.
+// https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio#add-and-configure-swagger-middleware
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("./swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
+
 
 app.UseHttpsRedirection();
 
