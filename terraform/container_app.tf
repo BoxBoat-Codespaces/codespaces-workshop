@@ -3,12 +3,12 @@ locals {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name = ""
+  name = "<USERNAME>resources"
   location = local.location
 }
 
 resource "azurerm_log_analytics_workspace" "laws" {
-  name                = ""
+  name                = "<USERNAME>law"
   location            = local.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "PerGB2018"
@@ -16,7 +16,7 @@ resource "azurerm_log_analytics_workspace" "laws" {
 }
 
 resource "azapi_resource" "container_app_environment" {
-  name = "Workshop"  
+  name = "<USERNAME>environment"  
   location = local.location
   parent_id = azurerm_resource_group.rg.id
   type = "Microsoft.App/managedEnvironments@2022-01-01-preview"
@@ -34,7 +34,7 @@ resource "azapi_resource" "container_app_environment" {
 }
 
 resource "azapi_resource" "container_app" {
-  name = ""  
+  name = "<USERNAME>app"  
   location = local.location
   parent_id = azurerm_resource_group.rg.id
   type = "Microsoft.App/containerApps@2022-01-01-preview"
@@ -50,8 +50,8 @@ resource "azapi_resource" "container_app" {
       template = {
         containers = [
           {
-            image = ""
-            name = ""
+            image = "ghcr.io/<ORG>/<REPO>:<TAG>"
+            name = "<USERNAME>container"
           }
         ]
       }
