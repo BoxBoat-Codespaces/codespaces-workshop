@@ -1,6 +1,12 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.191.0/containers/dotnetcore
 {
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb" 
+ },
+
 	"name": "Dotnet and Docker",
 	"build": {
 		"dockerfile": "Dockerfile",
