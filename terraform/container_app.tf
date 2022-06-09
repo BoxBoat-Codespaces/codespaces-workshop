@@ -57,4 +57,9 @@ resource "azapi_resource" "container_app" {
       }
     }
   })
+  response_export_values = ["properties.configuration.ingress.fqdn"]
+}
+
+output "fqdn" {
+  value = jsondecode(azapi_resource.container_app.output).properties.configuration.ingress.fqdn
 }
