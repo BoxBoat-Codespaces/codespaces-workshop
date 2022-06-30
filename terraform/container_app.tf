@@ -19,7 +19,7 @@ resource "azapi_resource" "container_app_environment" {
   name = "<USERNAME>environment"  
   location = local.location
   parent_id = azurerm_resource_group.rg.id
-  type = "Microsoft.App/managedEnvironments@2022-01-01-preview"
+  type = "Microsoft.App/managedEnvironments@2022-03-01"
   body = jsonencode({
     properties = {
         appLogsConfiguration = {
@@ -37,7 +37,7 @@ resource "azapi_resource" "container_app" {
   name = "<USERNAME>app"  
   location = local.location
   parent_id = azurerm_resource_group.rg.id
-  type = "Microsoft.App/containerApps@2022-01-01-preview"
+  type = "Microsoft.App/containerApps@2022-03-01"
   body = jsonencode({
     properties = {
       managedEnvironmentId = azapi_resource.container_app_environment.id
@@ -46,6 +46,19 @@ resource "azapi_resource" "container_app" {
           targetPort = 80
           external = true
         }
+        registries = [
+          {
+            server = "ghcr.io"
+            username = "REGUSER"
+            passwordSecretRef = "registry-password"
+          }
+        ],
+        secrets = [
+          {
+            name = "registry-password"
+            value = "REGPASS"
+          }
+        ]
       }
       template = {
         containers = [
